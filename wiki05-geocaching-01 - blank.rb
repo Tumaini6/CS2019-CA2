@@ -81,7 +81,7 @@ SQLQ[13] = "SELECT users.UID, COUNT(TID) AS 'Number of trackables' FROM trackabl
 SQLA[13] ='[["UID", "Number of trackables"], ["U001", 1], ["U002", 1]]'
 
 # display  UID and the number of trackables from the user with the uid 'U003' under the column name 'Number of trackables'
-SQLQ[14] = "SELECT trackables.UID, trackables.TID AS [Number of trackables] FROM trackables WHERE trackables.UID = 'U003';"
+SQLQ[14] = "SELECT UID, TID AS [Number of trackables] FROM trackables WHERE UID = 'U003';"
 SQLA[14] ='[["UID", "Number of trackables"]]'
 
 # display  UID, FNAME, LNAME and the number of caches each of the users own under the column name 'Number of caches owned'
