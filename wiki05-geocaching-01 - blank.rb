@@ -45,7 +45,7 @@ WHERE UID = 'U002';"
 SQLA[4] ='[["UID", "USERNAME", "OCACHEID", "OCREATED"], ["U002", "annegrey", "C002", "13/06/2021"]]'
 
 # display UID, USERNAME, OCACHEID, OCREATED data for cache owned by the user with the UID U002  not using the JOIN keyword
-SQLQ[5] = ""
+SQLQ[5] = "SELECT users.UID, users.USERNAME, owners.OCACHEID, owners.OCREATED FROM users, owners WHERE users.UID = 'U002' AND users.UID = owners.OUID;"
 SQLA[5] ='[["UID", "USERNAME", "OCACHEID", "OCREATED"], ["U002", "annegrey", "C002", "13/06/2021"]]'
 
 # display UID, USERNAME, TID, TNAME data for trackables owned by the user with the UID U001 not using the JOIN keyword
@@ -65,11 +65,11 @@ SQLQ[9] = ""
 SQLA[9] ='[["GID", "UID", "USERNAME"], ["WellieWalker", "U004", "johnroberts"], ["TheWanderer", "U002", "annegrey"], ["MadCacher", "U001", "juliesmith"], ["GoneCaching", "U005", "sallydavis"], ["AlwaysLost", "U003", "davidwillis"]]'
 
 # display  GID, UID and USERNAME data for all users in GID ascendng order and rename colmns UID ID and username UN 
-SQLQ[10] = ""
+SQLQ[10] = "SELECT UID AS ID, USERNAME AS UN FROM users ORDER BY GID ASC;"
 SQLA[10] ='[["ID", "UN"], ["U003", "davidwillis"], ["U005", "sallydavis"], ["U001", "juliesmith"], ["U002", "annegrey"], ["U004", "johnroberts"]]'
 
 # display the number of caches owned by the user with the UID U003
-SQLQ[11] = ""
+SQLQ[11] = "SELECT COUNT(ouid) FROM owners, users WHERE users.UID = 'U003' AND owners.OUID = users.UID;"
 SQLA[11] ='[["COUNT(ouid)"], [3]]'
 
 # display the number of trackables owned by the user with the UID U001 and rename the column 'Number of posts'
@@ -93,11 +93,11 @@ SQLQ[16] = ""
 SQLA[16] ='[["OCACHEID", "OUID", "FNAME", "LNAME", "UID", "FNAME", "LNAME"], ["C001", "U001", "Julie", "Smith", "U002", "Anne", "Grey"], ["C002", "U002", "Anne", "Grey", "U003", "David", "Willis"], ["C003", "U003", "David", "Willis", "U002", "Anne", "Grey"], ["C004", "U003", "David", "Willis", "U002", "Anne", "Grey"], ["C005", "U003", "David", "Willis", "U002", "Anne", "Grey"]]'
 
 # display only those cacheid where cachers have reported not finding  along with the number of times this has occurred.
-SQLQ[17] = ""
+SQLQ[17] = "SELECT CACHEID, COUNT(CFOUND) AS 'Number of times not found' FROM clogs WHERE clogs.CFOUND = 'NotFound' GROUP BY clogs.cacheid;"
 SQLA[17] ='[["CACHEID", "Number of times not found"], ["C001", 1], ["C004", 1]]'
 
 # display the number of caches that each trackable have visited.
-SQLQ[18] = ""
+SQLQ[18] = "SELECT tlogs.TID, COUNT(tlogs.TID) AS 'Number of caches visited' FROM tlogs WHERE tlogs.TSTATUS = 'Visited' OR tlogs.TSTATUS = 'PutInCache' GROUP BY tlogs.TID;"
 SQLA[18] ='[["TID", "Number of caches visited"], ["T001", 3], ["T002", 1]]'
 
 # display the UID, CACHEID, number of times cache found and date with which user acheived its 'first-time-found'.
@@ -120,7 +120,7 @@ SQLQ[22] = ""
 SQLA[22] ='[["TID"], ["T001"]]'
 
 #display the caches in order of the most times been found
-SQLQ[23] = ""
+SQLQ[23] = "SELECT CACHEID, COUNT(cfound) FROM clogs WHERE clogs.CFOUND = 'FoundIt' GROUP BY clogs.cacheid ORDER BY COUNT(clogs.cfound) DESC, clogs.CACHEID ASC;"
 SQLA[23] ='[["CACHEID", "COUNT(cfound)"], ["C002", 3], ["C001", 2], ["C003", 2]]'
 
 #display the caches in order of the most times been found 3 or more times
