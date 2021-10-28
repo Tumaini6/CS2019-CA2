@@ -35,7 +35,7 @@ SQLQ[2] = "SELECT UID AS UserID, USERNAME AS UN FROM users;"
 SQLA[2] ='[["UserID", "UN"], ["U001", "juliesmith"], ["U002", "annegrey"], ["U003", "davidwillis"], ["U004", "johnroberts"], ["U005", "sallydavis"]]'
 
 # display  UID and USERNAME data for user with UID 'U002'
-SQLQ[3] = ""
+SQLQ[3] = "SELECT uid, username FROM Users WHERE uid = 'U002'"
 SQLA[3] ='[["UID", "USERNAME"], ["U002", "annegrey"]]'
 
 # display UID, USERNAME, OCACHEID, OCREATED data for cache owned by the user with the UID U002 using an inner join
@@ -57,11 +57,11 @@ SQLQ[7] = ""
 SQLA[7] ='[["UID", "USERNAME", "CACHEID", "CNAME"], ["U003", "davidwillis", "C003", "WhereAmI"], ["U003", "davidwillis", "C004", "SpiderHole"], ["U003", "davidwillis", "C005", "ViewPoint"]]'
 
 # display UID, USERNAME, CACHEID, CNAME data for all active caches owned by the user with the UID U003 not using the JOIN keyword and using the table alias u for users, o for owners and c for caches
-SQLQ[8] = ""
+SQLQ[8] = "SELECT u.uid, u.username, c.cacheid, c.cname FROM Users AS 'u', Caches AS 'c', Owners AS 'o' WHERE u.uid = 'U003' AND c.cstatus = 'Active' AND u.uid = o.ouid AND o.ocacheid = c.cacheid"
 SQLA[8] ='[["UID", "USERNAME", "CACHEID", "CNAME"], ["U003", "davidwillis", "C003", "WhereAmI"], ["U003", "davidwillis", "C004", "SpiderHole"]]'
 
 # display  GID, UID and USERNAME data for all users in GID descending order 
-SQLQ[9] = ""
+SQLQ[9] = "SELECT gid, uid, username FROM Users ORDER BY gid DESC"
 SQLA[9] ='[["GID", "UID", "USERNAME"], ["WellieWalker", "U004", "johnroberts"], ["TheWanderer", "U002", "annegrey"], ["MadCacher", "U001", "juliesmith"], ["GoneCaching", "U005", "sallydavis"], ["AlwaysLost", "U003", "davidwillis"]]'
 
 # display  GID, UID and USERNAME data for all users in GID ascendng order and rename colmns UID ID and username UN 
@@ -85,7 +85,7 @@ SQLQ[14] = "SELECT UID, TID AS [Number of trackables] FROM trackables WHERE UID 
 SQLA[14] ='[["UID", "Number of trackables"]]'
 
 # display  UID, FNAME, LNAME and the number of caches each of the users own under the column name 'Number of caches owned'
-SQLQ[15] = ""
+SQLQ[15] = "SELECT owners.ouid, users.fname, users.lname, COUNT(owners.ocacheid) AS 'Number of caches owned' FROM users, owners WHERE owners.ouid = users.uid GROUP BY owners.ouid"
 SQLA[15] ='[["OUID", "FNAME", "LNAME", "Number of caches owned"], ["U001", "Julie", "Smith", 1], ["U002", "Anne", "Grey", 1], ["U003", "David", "Willis", 3]]'
 
 # display cacheid, UID, fname, lname of each cache along with the name of the user who approved the cache uid, fname, lname
