@@ -116,7 +116,7 @@ SQLQ[21] = "SELECT CID, TID FROM tlogs WHERE TSTATUS = 'Visited';"
 SQLA[21] ='[["CID", "TID"], ["C002", "T001"]]'
 
 #display the trackables which have been removed and visited a cache the same day
-SQLQ[22] = ""
+SQLQ[22] = "SELECT v.tid FROM tlogs as 'v', tlogs as 'r' WHERE r.tstatus = 'Removed' AND v.tstatus = 'Visited' AND v.date = r.date AND v.tid = r.tid"
 SQLA[22] ='[["TID"], ["T001"]]'
 
 #display the caches in order of the most times been found
