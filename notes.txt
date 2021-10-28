@@ -1,0 +1,20 @@
+Database Assesment
+
+2 - pretty simple, we want the UID and usernames from those in the users table and we give UID and username an alias.
+
+4- use an inner join to join owners and users. We of course assume the IDs are unique (they are primary keys so they are).
+
+7- We know first of all we need data from the users table (username and UID). We also know we need data from the caches table (CACHEID and CNAME).
+So therefore we assume we join the two tables however we can not directly link the two so we must first link them to and intermediary table, owners.
+We then filter out all results that aren't from "U003" and then done.
+
+14 - Use alias on trackables ID. We expect an empty table since U003 has no trackables. We could link the tables using an inner join however
+I did not do this since we already have UIDs in the trackables table and it (very slightly) saves processing power (if we need their usernames or other data from the
+users table then we would link it).
+
+20 - the number of times the cache is found we can narrow down by specifing we only need the 'FoundIt' from each cache. If we were to count the cacheIDs now then
+we are part-way to the solution (i.e. Count all the cache ids that were found). Now we need the the first date they were found which is easily done with the 
+MIN() function. Finally we want the information for each unique cache so we group them by cacheID.
+
+24 - We know we only need those caches that have been found so first we write query to find those, we then use that query to count only those specific caches (which
+we know have been found 3 or more times from the previous query).
