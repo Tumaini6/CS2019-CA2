@@ -91,7 +91,7 @@ SQLQ[15] = "SELECT owners.ouid, users.fname, users.lname, COUNT(owners.ocacheid)
 SQLA[15] ='[["OUID", "FNAME", "LNAME", "Number of caches owned"], ["U001", "Julie", "Smith", 1], ["U002", "Anne", "Grey", 1], ["U003", "David", "Willis", 3]]'
 
 # display cacheid, UID, fname, lname of each cache along with the name of the user who approved the cache uid, fname, lname
-SQLQ[16] = ""
+SQLQ[16] = "SELECT owners.ocacheid, owners.ouid, a.fname, a.lname, b.uid, b.fname, b.lname FROM owners, users AS 'a', users AS 'b' WHERE b.uid = owners.auid AND a.uid = owners.ouid"
 SQLA[16] ='[["OCACHEID", "OUID", "FNAME", "LNAME", "UID", "FNAME", "LNAME"], ["C001", "U001", "Julie", "Smith", "U002", "Anne", "Grey"], ["C002", "U002", "Anne", "Grey", "U003", "David", "Willis"], ["C003", "U003", "David", "Willis", "U002", "Anne", "Grey"], ["C004", "U003", "David", "Willis", "U002", "Anne", "Grey"], ["C005", "U003", "David", "Willis", "U002", "Anne", "Grey"]]'
 
 # display only those cacheid where cachers have reported not finding  along with the number of times this has occurred.
