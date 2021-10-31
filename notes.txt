@@ -6,11 +6,17 @@ Database Assesment
 
 4- use an inner join to join owners and users. We of course assume the IDs are unique (they are primary keys so they are).
 
+5 - Have to select UID and USERNAME from table users and OCACHEID and OCREATED from table owners. Have to set that UID is equal to ‘U002’ and that UID is equal to OUID.
+
 6 - I Selected UID, USERNAME and TNAME from the users and trackables tables, where the UID is the same in users and trackables and where UID is equal to U001.
 
 7- We know first of all we need data from the users table (username and UID). We also know we need data from the caches table (CACHEID and CNAME).
 So therefore we assume we join the two tables however we can not directly link the two so we must first link them to and intermediary table, owners.
 We then filter out all results that aren't from "U003" and then done.
+
+10 - Have to select from table users a UID, name it ID and a USERNAME and name it UN, and order it in ascending order by GID from table users.
+
+11 - Have to count caches (OUID) from table owners and set that UID from users is equal to ‘U003’ and OUID from table owners is equal to UID from table users.
 
 12 - I counted the number of TID’s we get and display it as Number of trackables, from the trackables table with an inner join with the users table on UID.
 
@@ -20,6 +26,10 @@ We then filter out all results that aren't from "U003" and then done.
 I did not do this since we already have UIDs in the trackables table and it (very slightly) saves processing power (if we need their usernames or other data from the
 users table then we would link it).
 
+17 - Have to select CACHEID and count number of times not found (CFOUND) from table clogs. Set that CFOUND is not found and group by cacheid.
+
+18 - Have to select from table tlogs the TID, count TID and name it ‘Number of caches visited’. Need to set that the status is visited and group by TID.
+
 19 - I did a three way inner join between clogs, caches and users, I then filtered the results to only display CFOUND where it is equal to FoundIT, I then counted casheid’s and found the earliest date. I then grouped the results by the cacheid's.
 
 20 - the number of times the cache is found we can narrow down by specifing we only need the 'FoundIt' from each cache. If we were to count the cacheIDs now then
@@ -27,6 +37,8 @@ we are part-way to the solution (i.e. Count all the cache ids that were found). 
 MIN() function. Finally we want the information for each unique cache so we group them by cacheID.
 
 21 - I found the CID’s and TID’s from tlogs where TSTATUS only if they equalled to Visited as, if it is only equal to visited then it never left.
+
+23 - Have to select from table clogs the CACHEID and count CFOUND . Set that CFOUND is found and group by cacheid. Order the results count of CFOUND in descending and then CACHEID in ascending order.
 
 24 - We know we only need those caches that have been found so first we write query to find those, we then use that query to count only those specific caches (which
 we know have been found 3 or more times from the previous query).
