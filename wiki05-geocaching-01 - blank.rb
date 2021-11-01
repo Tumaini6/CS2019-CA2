@@ -55,7 +55,7 @@ SQLA[6] ='[["UID", "USERNAME", "TID", "TNAME"], ["U001", "juliesmith", "T001", "
 # display UID, USERNAME, CACHEID, CNAME data for all caches owned by the user with the UID U003 not using the JOIN keyword
 SQLQ[7] = "SELECT users.UID, users.USERNAME, caches.CACHEID, caches.CNAME
 FROM users, caches, owners
-WHERE users.UID="U003" AND users.UID = owners.OUID AND owners.OCACHEID = caches.CACHEID;"
+WHERE users.UID='U003' AND users.UID = owners.OUID AND owners.OCACHEID = caches.CACHEID;"
 SQLA[7] ='[["UID", "USERNAME", "CACHEID", "CNAME"], ["U003", "davidwillis", "C003", "WhereAmI"], ["U003", "davidwillis", "C004", "SpiderHole"], ["U003", "davidwillis", "C005", "ViewPoint"]]'
 
 # display UID, USERNAME, CACHEID, CNAME data for all active caches owned by the user with the UID U003 not using the JOIN keyword and using the table alias u for users, o for owners and c for caches
